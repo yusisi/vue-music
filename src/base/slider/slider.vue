@@ -1,10 +1,10 @@
 <template>
-    <div class="slider">
-        <div class="slider-group">
+    <div class="slider" ref="slider">
+        <div class="slider-group" ref="sliderGroup">
             <slot></slot>
         </div>
         <div class="dots">
-            <span class="dot" :class="{active: currentPageIndex === index }" v-for="(item, index) in dots"></span>
+            <span class="dot" :class="{active: currentPageIndex === index }" v-for="(item, index) in dots" :key="item"></span>
         </div>
     </div>
 </template>
@@ -15,18 +15,18 @@ export default {
     name: 'slider',
     data() {
         return {
-            dos: [],
+            dots: [],
             currentPageIndex: 0
         }
     },
     props: {
         loop: {
-            type: Bollean,
+            type: Boolean,
             default: true
         },
         autoplay: {
-            type:Bollean,
-            default:true
+            type: Boolean,
+            default: true
         },
         interval: {
             type: Number,
@@ -36,8 +36,13 @@ export default {
     mounted() {
         setTimeout(() => {
             this._setSliderWidth()
+            this._initDots()
             this._initSlider()
-        },20)
+
+            if (this.autoPlay) {
+                this._play()
+            }
+        }, 20)
 
         window.addEventListener('resize', () => {
             if (!this.slider) {
@@ -49,7 +54,7 @@ export default {
     },
     methods: {
         _setSliderWidth(isResize) {
-            this.childern = this.$refs.sliderGroup.children
+            this.children = this.$refs.sliderGroup.children
             let width = 0
             let sliderWidth = this.$refs.slider.clientWidth
             for (let i = 0; i < this.children.length; i++) {
@@ -102,7 +107,7 @@ export default {
                 pageIndex += 1
             }
             this.timer = setTimeout(() => {
-            this.slider.goToPage(pageIndex, 0, 400)
+                this.slider.goToPage(pageIndex, 0, 400)
             }, this.interval)
         }
     }
