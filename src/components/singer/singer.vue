@@ -19,12 +19,12 @@
     export default {
         mixins: [playlistMixin],
         data() {
-        return {
-            singers: []
-        }
+            return {
+                singers: []
+            }
         },
         created() {
-        this._getSingerList()
+            this._getSingerList()
         },
         methods: {
         handlePlaylist(playlist) {
@@ -59,6 +59,7 @@
                 id: item.Fsinger_mid
                 }))
             }
+            // 
             const key = item.Findex
             if (!map[key]) {
                 map[key] = {
@@ -92,7 +93,7 @@
         })
         },
         components: {
-        ListView
+            ListView
         }
     }
 
