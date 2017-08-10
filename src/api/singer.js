@@ -13,7 +13,7 @@ export function getsSingerList() {
         needNewCode: 0,
         platform: 'yqq'
     })
-  return jsonp(url, data, options)
+    return jsonp(url, data, options)
 }
 
 export function getSingerDetail(singerId) {
@@ -32,4 +32,3 @@ export function getSingerDetail(singerId) {
 
     return jsonp(url, data, options)
 }
-

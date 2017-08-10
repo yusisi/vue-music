@@ -226,15 +226,15 @@ export default {
                 this.setCurrentIndex(index)
                 if (!this.playing) {
                     this.togglePlaying()
-                if (index === this.playlist.length) {
-                    index = 0
+                    if (index === this.playlist.length) {
+                        index = 0
+                    }
+                    this.setCurrentIndex(index)
+                    if (!this.playing) {
+                        this.togglePlaying()
+                    }
                 }
-                this.setCurrentIndex(index)
-                if (!this.playing) {
-                    this.togglePlaying()
-                }
-            }
-            this.songReady = false
+                this.songReady = false
             }
         },
         prev() {

@@ -59,7 +59,6 @@ export default {
                         id: item.Fsinger_mid
                     }))
                 }
-                // 
                 const key = item.Findex
                 if (!map[key]) {
                     map[key] = {
